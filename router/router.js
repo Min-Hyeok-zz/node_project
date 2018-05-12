@@ -91,17 +91,17 @@ module.exports = (app,fs) =>{
 		})
 	})
 
-	app.get('/write',(req,res) =>{
+	app.get('/write', (req,res) => {
 		res.render('write',{
 			title:"글작성"
 		})
 	})
 
-	app.post('/write',(req,res)=>{
+	app.post('/write', (req,res) => {
 		const writer = req.body.writer;
 		const subject = req.body.subject;
 		const content = req.body.content;
-		const sql = 'INSERT INTO board set writer="'+writer+'",subject="'+subject+'",content="'+content+'",date=now()';
+		const sql = `INSERT INTO board set writer="${writer}",subject="${subject}",content="${content}",date=now()`;
 		con.query(sql,(err,results)=>{
 			res.send('<script>alert("완료되었습니다.");</script>');
 		})
